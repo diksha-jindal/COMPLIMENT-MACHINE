@@ -8,7 +8,7 @@
 **Organization:** Hack Culprit  
 **GitHub Profile:** [@diksha-jindal](https://github.com/diksha-jindal)  
 **Project Duration:** [06-10-2025] – [10-10-2025]  
-**Project Repository:** [GitHub Repo URL]
+**Project Repository:** (https://github.com/diksha-jindal/COMPLIMENT-MACHINE.git)
 
 ---
 
