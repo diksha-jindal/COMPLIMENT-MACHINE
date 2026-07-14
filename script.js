@@ -21,21 +21,25 @@ const compliments = [
 const complimentEl = document.getElementById("compliment");
 const btn = document.getElementById("btn");
 
-btn.addEventListener("click", async () => {
-  complimentEl.textContent = "Thinking of something nice...";
-  
-  try {
-    const response = await fetch("/api/compliment", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ theme: "funny", recipient: "friend", tone: "sweet" }),
-    });
-    const data = await response.json();
-    complimentEl.textContent = data.compliment;
-    complimentEl.classList.add("show");
-    setTimeout(() => complimentEl.classList.remove("show"), 400);
-  } catch (err) {
-    // fallback to your local list if the API fails
-    complimentEl.textContent = compliments[Math.floor(Math.random() * compliments.length)];
+let availableCompliments = [...compliments]; // Copy of all compliments
+
+btn.addEventListener("click", () => {
+  if (availableCompliments.length === 0) {
+    // Reset when all compliments are used
+    availableCompliments = [...compliments];
   }
+
+  const randomIndex = Math.floor(Math.random() * availableCompliments.length);
+  const randomCompliment = availableCompliments.splice(randomIndex, 1)[0]; // Remove the used compliment
+
+  complimentEl.textContent = randomCompliment;
+  complimentEl.classList.add("show");
+
+  // Optional voice feature 🎤
+  const msg = new SpeechSynthesisUtterance(randomCompliment);
+  msg.rate = 1;
+  msg.pitch = 1;
+  speechSynthesis.speak(msg);
+
+  setTimeout(() => complimentEl.classList.remove("show"), 400);
 });
