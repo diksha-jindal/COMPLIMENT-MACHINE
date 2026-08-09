@@ -1,454 +1,879 @@
-// ==========================
-// Compliments
-// ==========================
-const compliments = [
-  "You make bugs disappear like magic ✨",
-  "You're the CSS to my HTML ❤️",
-  "Your code runs smoother than butter 🧈",
-  "You're smarter than Stack Overflow 😎",
-  "Your smile is your superpower 😊",
-  "You radiate positivity wherever you go 🌸",
-  "You're basically an AI with emotions 🤖",
-  "Your logic is sharper than C++ syntax 💻",
-  "You're the semicolon that completes my statement ;)",
-  "You make debugging look like art 🎨",
-  "You're destined to build something amazing 🚀",
-  "You spread joy faster than Wi-Fi 📶",
-  "Your smile could power an entire city ☀️",
-  "You're made of stardust and serotonin ✨",
-  "You brighten everyone's day 💛",
-  "You're a masterpiece in progress 🌈",
-  "Believe in yourself—you've got this! 💪",
-  "You're stronger than you think ❤️",
-  "You inspire people around you 🌸",
-  "You deserve all the happiness in the world 😊",
-  "You have a way of making ordinary moments feel special. ✨",
-"Someone is smiling today because of your kindness. 💛",
-"You don't just dream—you make things happen. 🚀",
-"The world is brighter because you're in it. ☀️",
-"You're proof that hard work and kindness can exist together. 🌸",
-"Your potential is far greater than your doubts. 💫",
-"You make people feel seen, and that's a rare gift. ❤️",
-"Every challenge you overcome becomes part of your strength. 💪",
-"Your presence has a calming effect on people around you. 🍃",
-"You're growing into someone your younger self would admire. 🌈",
-"Your ideas deserve to be heard. 🌟",
-"You inspire confidence without even trying. 😊",
-"You have the courage to keep going, even on difficult days. 🤍",
-"You make the internet a nicer place just by being here. 💻",
-"Your future is quietly cheering for you. 🎯",
-"You bring warmth wherever you go. 🌼",
-"You have a beautiful habit of making people feel valued. 💖",
-"Your consistency will take you further than talent alone. 🚀",
-"You are someone's reason to believe that good people still exist. 🌷",
-"You're becoming stronger with every step you take. 🌿",
-"You have an energy that makes people feel comfortable. ✨",
-"The effort you're putting in today will amaze future you. 🌟",
-"You deserve every good thing that's coming your way. 💛",
-"Your smile can brighten even the dullest day. 😊",
-"You're capable of creating something truly unforgettable. 🎨",
-"You have a heart that's just as beautiful as your mind. ❤️",
-"You remind people that kindness is never out of style. 🌸",
-"You're more resilient than you realize. 💪",
-"You carry hope wherever you go. ☀️",
-"You're exactly the kind of person this world needs more of. 🌍",
-"You make learning and growing look inspiring. 📚",
-"You have a quiet confidence that's incredibly powerful. ✨",
-"Keep being yourself—it's your greatest superpower. 🌈",
-"Your best chapter hasn't even begun yet. 📖",
-"You're doing better than you give yourself credit for. 💖",
-"Even your small achievements deserve to be celebrated. 🎉",
-"You have a spark that can't be replaced. ✨",
-"Your determination is genuinely inspiring. 🚀",
-"You make difficult things look possible. 🌟",
-"Believe it or not, you're someone's inspiration today. 💛"
-  ];
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* ===========================
+   DEFAULT THEME VARIABLES
+=========================== */
+
+:root {
+  --bg1: #ff9a9e;
+  --bg2: #fad0c4;
+  --bg3: #fbc2eb;
+
+  --glass: rgba(255, 255, 255, 0.2);
+
+  --title: #ffffff;
+
+  --subtitle: #ffffff;
+
+  --card: #ffffff;
+
+  --text: #444;
+
+  --btn1: #ff7eb3;
+  --btn2: #ff758c;
+
+  --shadow: rgba(255, 118, 165, 0.45);
+}
+
+/* ===========================
+      BODY
+=========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+
+  transition: 0.45s;
+
+  overflow: hidden;
+
+  padding-top: 80px;
+}
+
+/* ===========================
+      THEME SWITCHER
+=========================== */
+
+.theme-switcher {
+  position: fixed;
+
+  top: 20px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 12px;
+
+  padding: 12px 18px;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 50px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  z-index: 1000;
+}
+
+.theme-btn {
+  width: 28px;
+
+  height: 28px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.25);
+}
+
+.theme-btn.active {
+  transform: scale(1.35);
+
+  border: 3px solid white;
+
+  box-shadow: 0 0 15px white;
+}
+
+.theme-btn.pink {
+  background: #ff7eb3;
+}
+.theme-btn.dark {
+  background: #1e1e1e;
+}
+.theme-btn.light {
+  background: #ffffff;
+  border: 1px solid #ccc;
+}
+.theme-btn.purple {
+  background: #8e44ad;
+}
+.theme-btn.red {
+  background: #e74c3c;
+}
+.theme-btn.brown {
+  background: #8b4513;
+}
+.theme-btn.blue {
+  background: #3498db;
+}
+.theme-btn.green {
+  background: #27ae60;
+}
+
+/* ===========================
+      MAIN CARD
+=========================== */
+
+.container {
+  width: 520px;
+
+  max-width: 92%;
+
+  padding: 45px;
+
+  border-radius: 25px;
+
+  background: var(--glass);
+
+  backdrop-filter: blur(18px);
+
+  text-align: center;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+
+  animation: fadeIn 0.8s;
+}
+
+/* ===========================
+      TITLE
+=========================== */
+
+.title {
+  color: var(--title);
+
+  font-size: 2.2rem;
+
+  font-weight: 700;
+
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--subtitle);
+
+  opacity: 0.95;
+
+  margin-bottom: 30px;
+}
+
+/* ===========================
+     COMPLIMENT BOX
+=========================== */
+
+.compliment-box {
+  background: var(--card);
+
+  color: var(--text);
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  min-height: 130px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin-bottom: 30px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  transition: 0.35s;
+}
+
+#compliment {
+  font-size: 1.25rem;
+
+  font-weight: 500;
+
+  line-height: 1.7;
+
+  transition: 0.3s;
+}
+
+/* ===========================
+      BUTTON
+=========================== */
+
+.glow-button {
+  background: linear-gradient(45deg, var(--btn1), var(--btn2));
+
+  color: white;
+
+  border: none;
+
+  border-radius: 40px;
+
+  padding: 16px 40px;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow: 0 12px 25px var(--shadow);
+}
+
+  .audio-button {
+    margin-top: 15px;
   
+    background: rgba(255,255,255,.22);
   
-  // ==========================
-  // DOM Elements
-  // ==========================
+    color: white;
+  
+    border: 2px solid rgba(255,255,255,.35);
+  
+    border-radius: 40px;
+  
+    padding: 14px 35px;
+  
+    font-size: 16px;
+  
+    font-weight: 600;
+  
+    cursor: pointer;
+  
+    backdrop-filter: blur(12px);
+  
+    transition: .3s;
 
-const compliment = document.getElementById("compliment");
-const button = document.getElementById("btn");
-const audioBtn = document.getElementById("audioBtn");
-let currentCompliment = compliment.textContent;
-let availableCompliments = [...compliments];
+    min-width: 180px;
+
+    display: inline-block;
+
+    text-align: center;
+  }
+  
+  .audio-button:hover{
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.3);
+  }
+  
+  .audio-button:active{
+    transform: scale(.96);
+  }
 
 
 
-// ==========================
-// Voice Loading Helper
-// ==========================
 
-let cachedVoices = [];
+.glow-button:hover {
+  transform: translateY(-4px);
 
-function loadVoices() {
-  return new Promise((resolve) => {
-    let voices = speechSynthesis.getVoices();
-    if (voices.length) {
-      cachedVoices = voices;
-      resolve(voices);
-      return;
+  box-shadow: 0 18px 35px var(--shadow);
+}
+
+.glow-button:active {
+  transform: scale(0.96);
+}
+
+/* ===========================
+      FOOTER
+=========================== */
+
+footer {
+  margin-top: 30px;
+
+  color: white;
+
+  font-weight: 500;
+}
+
+/* ===========================
+      ANIMATION
+=========================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+      THEMES
+=========================== */
+
+body.pink {
+  --bg1: #ff9a9e;
+  --bg2: #fad0c4;
+  --bg3: #fbc2eb;
+
+  --btn1: #ff7eb3;
+  --btn2: #ff758c;
+}
+
+body.dark {
+  --bg1: #141e30;
+  --bg2: #243b55;
+  --bg3: #000000;
+
+  --glass: rgba(0, 0, 0, 0.35);
+
+  --title: #fff;
+
+  --subtitle: #ddd;
+
+  --card: #232323;
+
+  --text: #fff;
+
+  --btn1: #4b6cb7;
+  --btn2: #182848;
+
+  --shadow: rgba(75, 108, 183, 0.6);
+}
+
+body.light {
+  --bg1: #ffffff;
+  --bg2: #edf2f7;
+  --bg3: #dbeafe;
+
+  --glass: rgba(255, 255, 255, 0.75);
+
+  --title: #222;
+
+  --subtitle: #444;
+
+  --card: #fff;
+
+  --text: #222;
+
+  --btn1: #4facfe;
+  --btn2: #00f2fe;
+
+  --shadow: rgba(79, 172, 254, 0.45);
+}
+
+body.purple {
+  --bg1: #7f00ff;
+  --bg2: #e100ff;
+  --bg3: #b721ff;
+
+  --btn1: #8e2de2;
+  --btn2: #4a00e0;
+
+  --shadow: rgba(142, 45, 226, 0.45);
+}
+
+body.red {
+  --bg1: #ff512f;
+  --bg2: #dd2476;
+  --bg3: #ff6a88;
+
+  --btn1: #ff512f;
+  --btn2: #dd2476;
+
+  --shadow: rgba(221, 36, 118, 0.45);
+}
+
+body.brown {
+  --bg1: #603813;
+  --bg2: #b29f94;
+  --bg3: #8e6e53;
+
+  --btn1: #8b4513;
+  --btn2: #a0522d;
+
+  --shadow: rgba(139, 69, 19, 0.45);
+}
+
+body.blue {
+  --bg1: #2193b0;
+  --bg2: #6dd5ed;
+  --bg3: #ccf2ff;
+
+  --btn1: #00b4db;
+  --btn2: #0083b0;
+
+  --shadow: rgba(0, 180, 219, 0.45);
+}
+
+body.green {
+  --bg1: #56ab2f;
+  --bg2: #a8e063;
+  --bg3: #d4fc79;
+
+  --btn1: #11998e;
+  --btn2: #38ef7d;
+
+  --shadow: rgba(17, 153, 142, 0.45);
+}
+
+/* ===========================
+      RESPONSIVE
+=========================== */
+
+@media (max-width: 600px) {
+  .container {
+    width: 92%;
+
+    padding: 30px 22px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  #compliment {
+    font-size: 1.05rem;
+  }
+
+  .glow-button {
+    width: 100%;
+  }
+
+  .theme-switcher {
+    gap: 8px;
+
+    padding: 10px 12px;
+  }
+
+  .theme-btn {
+    width: 24px;
+
+    height: 24px;
+  }
+}
+
+/* ===========================
+      NAVBAR
+=========================== */
+
+body {
+    padding-top: 90px;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 32px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+  }
+  
+  .nav-brand {
+    color: var(--title);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    list-style: none;
+  }
+  
+  .nav-link {
+    color: var(--title);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.85;
+    padding: 6px 2px;
+    position: relative;
+    transition: 0.25s;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    opacity: 1;
+  }
+  
+  .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: var(--btn1);
+    border-radius: 2px;
+  }
+  
+  /* ---- Themes Dropdown ---- */
+  
+  .nav-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle .caret {
+    display: inline-block;
+    transition: transform 0.25s;
+    font-size: 0.75rem;
+  }
+  
+  .nav-dropdown:hover .dropdown-toggle .caret {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 150px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: 0.25s;
+  }
+  
+  .nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-menu .theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    background: transparent;
+    border: none;
+    padding: 9px 12px;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .dropdown-menu .theme-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    transform: none;
+  }
+  
+  .dropdown-menu .theme-btn.active {
+    background: rgba(0, 0, 0, 0.08);
+    transform: none;
+    border: none;
+    box-shadow: none;
+    font-weight: 700;
+  }
+  
+  .theme-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  
+  .theme-btn.pink .theme-dot { background: #ff7eb3; }
+  .theme-btn.dark .theme-dot { background: #1e1e1e; }
+  .theme-btn.light .theme-dot { background: #ffffff; border: 1px solid #ccc; }
+  .theme-btn.purple .theme-dot { background: #8e44ad; }
+  .theme-btn.red .theme-dot { background: #e74c3c; }
+  .theme-btn.brown .theme-dot { background: #8b4513; }
+  .theme-btn.blue .theme-dot { background: #3498db; }
+  .theme-btn.green .theme-dot { background: #27ae60; }
+  
+  /* ---- Auth Buttons ---- */
+  
+  .nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .nav-btn {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.25s;
+    border: none;
+  }
+  
+  .login-btn {
+    background: transparent;
+    color: var(--title);
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+  }
+  
+  .login-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .signup-btn {
+    background: linear-gradient(45deg, var(--btn1), var(--btn2));
+    color: white;
+    box-shadow: 0 8px 18px var(--shadow);
+  }
+  
+  .signup-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--title);
+    cursor: pointer;
+  }
+  
+  /* ===========================
+        AUTH MODAL
+  =========================== */
+  
+  .auth-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 2000;
+  }
+  
+  .auth-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .auth-modal {
+    position: relative;
+    width: 380px;
+    max-width: 90%;
+    background: #fff;
+    border-radius: 22px;
+    padding: 36px 32px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    transform: scale(0.92);
+    transition: 0.3s;
+  }
+  
+  .auth-overlay.open .auth-modal {
+    transform: scale(1);
+  }
+  
+  .auth-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+  }
+  
+  .auth-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    background: #f2f2f2;
+    border-radius: 30px;
+    padding: 5px;
+  }
+  
+  .auth-tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #777;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+  
+  .auth-tab.active {
+    background: linear-gradient(45deg, var(--btn1), var(--btn2));
+    color: white;
+    box-shadow: 0 8px 18px var(--shadow);
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .auth-form input {
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #e2e2e2;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    transition: 0.2s;
+  }
+  
+  .auth-form input:focus {
+    border-color: var(--btn1);
+  }
+  
+  .auth-submit {
+    margin-top: 6px;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, var(--btn1), var(--btn2));
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 10px 22px var(--shadow);
+    transition: 0.25s;
+  }
+  
+  .auth-submit:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* ===========================
+        NAVBAR RESPONSIVE
+  =========================== */
+  
+  @media (max-width: 768px) {
+  
+    .nav-links,
+    .nav-auth {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 16px;
+      transform: translateY(-120%);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
     }
-    speechSynthesis.onvoiceschanged = () => {
-      cachedVoices = speechSynthesis.getVoices();
-      resolve(cachedVoices);
-    };
-  });
-}
-
-// Preload voices as soon as possible
-loadVoices();
-
-function pickFemaleVoice(voices) {
-  // Ordered by how natural/pleasant they tend to sound
-  const preferredNames = [
-    "google us english",
-    "samantha",
-    "microsoft zira",
-    "zira",
-    "microsoft aria",
-    "aria",
-    "victoria",
-    "karen",
-    "moira",
-    "tessa",
-    "fiona",
-    "female"
-  ];
-
-  for (const name of preferredNames) {
-    const match = voices.find(v => v.name.toLowerCase().includes(name));
-    if (match) return match;
-  }
-
-  // Fallback: any English voice
-  return voices.find(v => v.lang.startsWith("en")) || voices[0] || null;
-}
-
-// ==========================
-// Emoji Removal Helper
-// ==========================
-
-function removeEmojis(text) {
-  return text
-    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}\uFE0F]/gu, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-// ==========================
-// Audio Button
-// ==========================
-
-audioBtn.addEventListener("click", async () => {
-
-  speechSynthesis.cancel();
-
-  const cleanText = removeEmojis(currentCompliment);
-
-  const speech = new SpeechSynthesisUtterance(cleanText);
-
-  speech.rate = 1;
-  speech.pitch = 1.15;
-  speech.volume = 1;
-
-  // Make sure voices are actually loaded before picking one
-  let voices = cachedVoices.length ? cachedVoices : await loadVoices();
-
-  const femaleVoice = pickFemaleVoice(voices);
-
-  if (femaleVoice) {
-    speech.voice = femaleVoice;
-  }
-
-  // Simple visual feedback while speaking
-  audioBtn.disabled = true;
-  audioBtn.textContent = "🔊 Speaking...";
-
-  speech.onend = () => {
-    audioBtn.disabled = false;
-    audioBtn.textContent = "🔊 Listen";
-  };
-  speech.onerror = () => {
-    audioBtn.disabled = false;
-    audioBtn.textContent = "🔊 Listen";
-  };
-
-  speechSynthesis.speak(speech);
-
-});
   
- // ==========================
-// Theme Switcher
-// ==========================
-
-const themeButtons = document.querySelectorAll(".theme-btn");
-
-const themes = [
-  "pink",
-  "dark",
-  "light",
-  "purple",
-  "red",
-  "brown",
-  "blue",
-  "green",
-];
-
-const savedTheme = localStorage.getItem("theme") || "pink";
-
-// Apply saved theme
-document.body.classList.remove(...themes);
-document.body.classList.add(savedTheme);
-
-// Highlight active button
-themeButtons.forEach((btn) => {
-  if (btn.dataset.theme === savedTheme) {
-    btn.classList.add("active");
-  }
-});
-
-// Change theme on click
-themeButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const theme = btn.dataset.theme;
-
-    // Remove previous theme
-    document.body.classList.remove(...themes);
-
-    // Add new theme
-    document.body.classList.add(theme);
-
-    // Save theme
-    localStorage.setItem("theme", theme);
-
-    // Update active button
-    themeButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
-});
-
-
-// ==========================
-// Navbar Mobile Toggle
-// ==========================
-
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
-const navAuth = document.querySelector(".nav-auth");
-const navDropdown = document.querySelector(".nav-dropdown");
-
-navToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  navAuth.classList.toggle("open");
-});
-
-// On mobile, tapping "Themes" opens the dropdown instead of hover
-navDropdown.querySelector(".dropdown-toggle").addEventListener("click", (e) => {
-  if (window.innerWidth <= 768) {
-    e.preventDefault();
-    navDropdown.classList.toggle("open");
-  }
-});
-
-
-// ==========================
-// Locked Compliment State
-// ==========================
-
-const lockedMessages = [
-  "🔒 no compliments for ghosts... sign up bestie 💅",
-  "🚫 nice try. login first, no cap 🔐",
-  "✨ compliments are VIP only rn — sign up to unlock 💎",
-  "🫥 who dis? sign up so we know who to hype up",
-  "🔐 locked in. unlock the vibes — create an account"
-];
-
-function showLockedCompliment() {
-  const randomLocked = lockedMessages[Math.floor(Math.random() * lockedMessages.length)];
-  compliment.textContent = randomLocked;
-  compliment.classList.add("locked");
-  currentCompliment = randomLocked;
-}
-
-function showUnlockedDefault() {
-  compliment.classList.remove("locked");
-  compliment.textContent = "You are capable of amazing things 🌸";
-  currentCompliment = compliment.textContent;
-}
-
-function updateComplimentLockState() {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  if (loggedInUser) {
-    showUnlockedDefault();
-  } else {
-    showLockedCompliment();
-  }
-}
-
-
-
-// ==========================
-// Auth Modal + User Storage
-// ==========================
-
-const authOverlay = document.getElementById("authOverlay");
-const authClose = document.getElementById("authClose");
-const authTabs = document.querySelectorAll(".auth-tab");
-const loginForm = document.getElementById("loginForm");
-const signupForm = document.getElementById("signupForm");
-const navAuthContainer = document.getElementById("navAuthContainer");
-const authRequiredMsg = document.getElementById("authRequiredMsg");
-
-function openAuthModal(tab) {
-  authOverlay.classList.add("open");
-  switchAuthTab(tab);
-}
-
-function closeAuthModal() {
-  authOverlay.classList.remove("open");
-}
-
-function switchAuthTab(tab) {
-  authTabs.forEach((t) => t.classList.toggle("active", t.dataset.tab === tab));
-  loginForm.style.display = tab === "login" ? "flex" : "none";
-  signupForm.style.display = tab === "signup" ? "flex" : "none";
-  document.getElementById("loginError").textContent = "";
-  document.getElementById("signupError").textContent = "";
-}
-
-authClose.addEventListener("click", closeAuthModal);
-
-authOverlay.addEventListener("click", (e) => {
-  if (e.target === authOverlay) closeAuthModal();
-});
-
-authTabs.forEach((tab) => {
-  tab.addEventListener("click", () => switchAuthTab(tab.dataset.tab));
-});
-
-// ---- Nav mein login/signup vs logged-in state dikhana ----
-
-function renderAuthUI() {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-
-  if (loggedInUser) {
-    const users = JSON.parse(localStorage.getItem("users")) || {};
-    const name = users[loggedInUser]?.name || "User";
-
-    navAuthContainer.innerHTML = `
-      <span class="nav-username">Hi, ${name.split(" ")[0]} 👋</span>
-      <button class="nav-btn login-btn" id="logoutBtn">Log Out</button>
-    `;
-  } else {
-    navAuthContainer.innerHTML = `
-      <button class="nav-btn login-btn" id="loginBtn">Log In</button>
-      <button class="nav-btn signup-btn" id="signupBtn">Sign Up</button>
-    `;
-  }
-  updateComplimentLockState();
-}
-
-// Event delegation - taaki innerHTML replace hone ke baad bhi buttons kaam karein
-navAuthContainer.addEventListener("click", (e) => {
-  if (e.target.id === "loginBtn") openAuthModal("login");
-  if (e.target.id === "signupBtn") openAuthModal("signup");
-  if (e.target.id === "logoutBtn") {
-    localStorage.removeItem("loggedInUser");
-    renderAuthUI();
-  }
-});
-
-// ---- Signup ----
-
-signupForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("signupName").value.trim();
-  const email = document.getElementById("signupEmail").value.trim().toLowerCase();
-  const password = document.getElementById("signupPassword").value;
-  const errorEl = document.getElementById("signupError");
-
-  const users = JSON.parse(localStorage.getItem("users")) || {};
-
-  if (users[email]) {
-    errorEl.textContent = "Yeh email pehle se registered hai. Login karein.";
-    return;
-  }
-
-  users[email] = { name, password };
-  localStorage.setItem("users", JSON.stringify(users));
-  localStorage.setItem("loggedInUser", email);
-
-  signupForm.reset();
-  renderAuthUI();
-  closeAuthModal();
-  authRequiredMsg.textContent = "";
-});
-
-// ---- Login ----
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-  const password = document.getElementById("loginPassword").value;
-  const errorEl = document.getElementById("loginError");
-
-  const users = JSON.parse(localStorage.getItem("users")) || {};
-
-  if (!users[email] || users[email].password !== password) {
-    errorEl.textContent = "Email ya password galat hai.";
-    return;
-  }
-
-  localStorage.setItem("loggedInUser", email);
-
-  loginForm.reset();
-  renderAuthUI();
-  closeAuthModal();
-  authRequiredMsg.textContent = "";
-});
-
-renderAuthUI();
-  
-  
-  // ==========================
-  // Compliment Button
-  // ==========================
-  
-  button.addEventListener("click", () => {
-
-    const loggedInUser = localStorage.getItem("loggedInUser");
-
-    if (!loggedInUser) {
-        authRequiredMsg.textContent = "Main character energy unlocked after login! ✨";
-        openAuthModal("signup");
-        return;
+    .nav-links.open,
+    .nav-auth.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
     }
-
-    if (availableCompliments.length === 0) {
-
-        availableCompliments = [...compliments];
-
+  
+    .nav-link { color: #333; }
+  
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      display: none;
+      width: 100%;
     }
+  
+    .nav-dropdown.open .dropdown-menu {
+      display: flex;
+    }
+  
+    .nav-toggle {
+      display: block;
+    }
+  
+    body {
+      padding-top: 70px;
+    }
+  }
 
-    const randomIndex = Math.floor(Math.random() * availableCompliments.length);
 
-    const randomCompliment = availableCompliments.splice(randomIndex, 1)[0];
+  .auth-error {
+    color: #e74c3c;
+    font-size: 0.82rem;
+    margin: -6px 0 0;
+    min-height: 16px;
+  }
+  
+  .auth-required-msg {
+    color: #ff5b7f;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    min-height: 20px;
+  }
+  
+  .nav-username {
+    color: var(--title);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
 
-    compliment.style.opacity = 0;
 
-    setTimeout(() => {
-
-        compliment.textContent = randomCompliment;
-
-        currentCompliment = randomCompliment;
-
-        compliment.style.opacity = 1;
-
-    }, 200);
-
-});
+  #compliment.locked {
+    font-style: italic;
+    opacity: 0.75;
+    letter-spacing: 0.2px;
+  }
