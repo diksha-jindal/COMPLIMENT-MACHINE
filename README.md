@@ -1,5 +1,3 @@
-# Hack Culprit Virtual Internship - Project Report
-
 ## Project Title: COMPLIMENT MACHINE
 
 ### Submitted by:
