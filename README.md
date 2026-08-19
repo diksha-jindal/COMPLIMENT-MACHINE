@@ -93,11 +93,14 @@ Works both online and offline seamlessly
 
 ## 8. Demonstration
 
-![alt text](image1.png)
+### 1. Compliment Machine – Home Screen
+![Compliment Machine Home Screen](image1.png)
 
-![alt text](image2.png)
+### 2. Compliment Generation with Voice feature.
+![Compliment Generation](image2.png)
 
-![alt text](image3.png)
+### 3. Many themes and Interactive Features
+![Voice and Interactive Features](image3.png)
 
 
 ---
