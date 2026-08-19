@@ -93,9 +93,11 @@ Works both online and offline seamlessly
 
 ## 8. Demonstration
 
-![alt text](image.png)
+![alt text](image1.png)
 
-![alt text](image-1.png)
+![alt text](image2.png)
+
+![alt text](image3.png)
 
 
 ---
